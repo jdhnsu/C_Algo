@@ -62,17 +62,21 @@ void heap_print(heap* tree,int root)
     int font = 0;
     int rear = 0;
     int flog = 0;
-    while (flog <= tree->size)
+    while (flog < tree->size)
     {
       for (int i=0;i<2;i++)
       {
         int flog_i;
         if (i == 0)
+        {
             flog_i = heap_get_left(tree,queue[i]);
+        }
         else if (i ==  1)
             flog_i = heap_get_right(tree,queue[i]);
         printf("%d",tree->data[queue[i]]);
         flog++;
+        
        }
     }
 }
+ 
