@@ -59,40 +59,45 @@ void heap_push(heap *tree,int val)
 void heap_print(heap* tree,int root)
 {
     int queue[3] = {0};
-    int font = 0;
-    int rear = 0;
-    int flog = 0;
+    int font = root;
+    int rear = font+1;
+    int flog = 1;
+    printf("[%d]\n",tree->data[root]);
     while (flog < tree->size)
     {
+        int flog_r = 0,flog_l = 0;
         for (int i = 0;i<2;i++)
             {
                switch (i)
                {
                case 0:
-               int  flog_l= heap_get_left(tree,queue[font]);
+               flog_l= heap_get_left(tree,queue[font]);
                 if (flog_l > tree->size)
                     {
                         continue;
                     }
                 queue[rear] = flog_l;
                 rear = (rear+1) % 3;
+                printf("[%d]",tree->data[flog_l]);
+                flog++;
                 break;
                 case 1:
-                int flog_r = heap_get_right(tree,queue[font]);
+                flog_r = heap_get_right(tree,queue[font]);
                 if (flog_r > tree->size)
                     {
                         continue;
                     }
                 queue[rear] = flog_r;
                 rear = (rear+1) % 3;
+                printf("[%d]",tree->data[flog_r]);
+                flog++;
                 break; 
                default:
                 break;
                }
             } 
-            printf("%d",tree->data[queue[font]]);
+            printf("\n");
             font = (font+1) % 3;
-            flog++;
     }
 }
  
